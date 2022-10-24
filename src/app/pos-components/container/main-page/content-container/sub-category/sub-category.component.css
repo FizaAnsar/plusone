@@ -1,0 +1,18 @@
+.loop {
+  display: inline-block;
+ 
+  text-align: center;
+  margin: 10px;
+}
+.rowCont{
+  width:100%;
+  display: flex;
+
+}
+
+.section-name {
+  display: grid;
+  grid-template-columns: 12% 87%;
+  align-items: flex-start;
+  justify-content: flex-start;
+}

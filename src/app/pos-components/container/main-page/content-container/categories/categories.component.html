@@ -1,0 +1,45 @@
+<app-section-name></app-section-name>
+
+
+<!-- slider -->
+
+<section id="slider">
+
+    <div class="product">
+        <div class="container-fluid">
+            <div class="slider-wrap">
+                <div class="slider-main">
+
+                    <button class="item" *ngFor="let category of categories" [attr.aria-label]="category.sectionName"
+                        (click)="getCategoryId(categories.value)" value="{{category.sectionId}}"
+                        (click)="changeColor(categories.value)"
+                         [ngClass]="{'val24':categories.value=='24','val25':categories.value=='25',
+                         'val26':categories.value=='26','val27':categories.value=='27','val28':categories.value=='28',
+                         'val29':categories.value=='29',
+                        'val30':categories.value=='30','val31':categories.value=='31','val32':categories.value=='32',
+                        'val33':categories.value=='33','val34':categories.value=='34','val35':categories.value=='35',
+                        'val36':categories.value=='36','val37':categories.value=='37','val38':categories.value=='38',
+                        'val39':categories.value=='39','val40':categories.value=='40','val41':categories.value=='41'
+                        }" #categories>
+                        {{category.sectionName}}
+                        <!-- (click)="changeColor(categories.value)" -->
+                    </button>
+
+                </div>
+                <div class="button-area">
+                    <button type="button" class="prev" appPrev>
+                        <i class="fa-solid fa-angle-left angle"></i>
+                        <!-- <i class="fa-solid fa-triangle angle fa-flip-horizontal "></i> -->
+                    </button>
+                    <button type="button" class="next" appNext>
+                        <i class="fa-solid fa-angle-right angle"></i>
+
+
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</section>

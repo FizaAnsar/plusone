@@ -1,0 +1,21 @@
+.main-page{
+    display:grid;
+    grid-template-columns: 28% 72%;
+    margin:0;
+    padding:0;
+}
+.mainrow{
+    margin:0 !important;
+    padding:0 !important;
+}
+@media only screen and (max-width:1200px){
+    .main-page{
+        grid-template-columns: 35% 65%;
+    }
+}
+@media only screen and (max-width:957px){
+    .main-page{
+        grid-template-columns: 100%;
+        order:-1
+    }
+}

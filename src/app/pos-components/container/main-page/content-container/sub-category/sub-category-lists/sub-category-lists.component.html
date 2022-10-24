@@ -1,0 +1,14 @@
+ <div class="box">
+       <button class="box-item"
+       [attr.aria-label]="subcategory.categoryName"
+       value="{{subcategory.categoryId}}"
+       (click)="getSubCategory(subCategory.value)"
+       #subCategory
+       >
+        
+               {{subcategory.categoryName}}
+
+       </button> 
+    </div> 
+
+  
