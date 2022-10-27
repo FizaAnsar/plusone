@@ -16,11 +16,14 @@ import { ProductComponent } from './pos-components/container/main-page/content-c
 import { ProductListsComponent } from './pos-components/container/main-page/content-container/product/product-lists/product-lists.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LoginComponent } from './auth-components/login/login.component'
-import {HttpClientModule} from '@angular/common/http';
+import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import { NextDirective } from './directives/next.directive';
 import { PrevDirective } from './directives/prev.directive';
 import { SectionNameComponent } from './pos-components/section-name/section-name.component';
 import { OrdersComponent } from './pos-components/container/main-page/sidebar/orders/orders.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+import { AuthInterceptorService } from './services/auth-interceptor.service';
 
 
 @NgModule({
@@ -47,10 +50,16 @@ import { OrdersComponent } from './pos-components/container/main-page/sidebar/or
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
     NgbModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    
+    {provide:HTTP_INTERCEPTORS,useClass:AuthInterceptorService,multi:true}
+
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

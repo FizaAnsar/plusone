@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { FoodsDataService } from 'src/app/services/foods-data.service';
 
 @Component({
   selector: 'app-header',
@@ -6,10 +8,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-
-  constructor() { }
+  public navbarCollapsed = true;
+  constructor(private user:FoodsDataService,private router:Router) { }
 
   ngOnInit(): void {
+  }
+  logout(){
+    this.user.deleteUser();
+    this.router.navigate(['signin'])
   }
 
 }
