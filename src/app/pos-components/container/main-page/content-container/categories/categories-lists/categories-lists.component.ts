@@ -1,4 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { TitleStrategy } from '@angular/router';
+import { ChangecolorService } from 'src/app/services/changecolor.service';
 import { FoodsDataService } from 'src/app/services/foods-data.service';
 import { MessengerService } from 'src/app/services/messenger.service';
 
@@ -10,7 +12,7 @@ import { MessengerService } from 'src/app/services/messenger.service';
 export class CategoriesListsComponent implements OnInit {
  @Input() categoryList:any;
  subCategory:any;
-  constructor(private food:FoodsDataService, private messenger:MessengerService) { }
+  constructor(private food:FoodsDataService, private messenger:MessengerService, private Color:ChangecolorService) { }
   ngOnInit(): void {
   console.log("Categories Lists", this.categoryList)
   // this.categoryList.getCategories();
@@ -36,7 +38,7 @@ export class CategoriesListsComponent implements OnInit {
   // }
 
   // here we get category Id when we click on button and by this id subcategory api receive
-
+categories:any
   getCategoryId(data: string) {
     console.log('sub category', data)
     this.food.getsubCategory(data).subscribe({
@@ -45,7 +47,11 @@ export class CategoriesListsComponent implements OnInit {
         console.log("subactegories api",this.subCategory);
         // this.Color.subCatArray(this.subCategory)
         // here we snd subcategory api to the service
+       this.categories= this.Color.receiveCategories()
         this.messenger.sendSubCategory(this.subCategory);
+        if(this.subCategory[0].sectionId== this.categories[0].sectionId){
+          console.log('hello')
+        }
       },
       error: (err) => {
         console.log('error');

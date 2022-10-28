@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ChangecolorService } from 'src/app/services/changecolor.service';
 import { FoodsDataService } from 'src/app/services/foods-data.service';
 import { MessengerService } from 'src/app/services/messenger.service';
+import { OwlOptions } from 'ngx-owl-carousel-o';
 
 @Component({
   selector: 'app-categories',
@@ -14,6 +15,7 @@ export class CategoriesComponent implements OnInit {
 
   ngOnInit(): void {  
     this.receiveCategories()
+    this.loadChangeColor()
   }
   categories: any;
   subCategory: any;
@@ -24,11 +26,56 @@ export class CategoriesComponent implements OnInit {
     this.food.getCategories().subscribe({
       next: (res) => {
         this.categories = res;
+       
+       
+          // var eles = document.getElementsByClassName('slide_item');
+          // console.log(eles);
+          // console.log(eles.length);
+          // console.log(eles[0]);
+         
+         
+            // const btn = document.getElementsByClassName('slide_item')[0] as HTMLElement
+            // console.log(btn)
+        
+         
+      
+        // this.Color.getsections(res)
       },
       error: (err) => {
         console.log(err.message)
       }
     })
+  }
+  loadChangeColor(){
+    var eles = document.getElementsByClassName('slide_item');
+          console.log(eles);
+          console.log(eles.length);
+          console.log(eles[0]);
+  }
+
+  customOptions: OwlOptions = {
+    loop: false,
+    mouseDrag: true,
+    touchDrag: true,
+    pullDrag: true,
+    dots: true,
+    navSpeed: 700,
+    navText: ['', ''],
+    responsive: {
+      0: {
+        items: 1
+      },
+      400: {
+        items: 2
+      },
+      740: {
+        items: 3
+      },
+      940: {
+        items: 4
+      }
+    },
+    nav: false
   }
 
   changeColor(category: any) {
@@ -54,8 +101,8 @@ export class CategoriesComponent implements OnInit {
     this.food.getsubCategory(data).subscribe({
       next: (res) => {
         this.subCategory = res;
-        console.log("subactegories api",this.subCategory);
-        // this.Color.subCatArray(this.subCategory)
+        // console.log("subactegories api",this.subCategory);
+        this.Color.subCatArray(this.subCategory)
         // here we snd subcategory api to the service
         this.messenger.sendSubCategory(this.subCategory);
       },

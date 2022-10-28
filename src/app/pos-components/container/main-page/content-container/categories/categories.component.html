@@ -1,66 +1,44 @@
 <app-section-name></app-section-name>
 
 
-<!-- slider -->
 
-<!-- <section id="slider">
 
-    <div class="product">
-        <div class="container-fluid">
-            <div class="slider-wrap">
-                <div class="slider-main">
+<owl-carousel-o [options]="customOptions">
 
-                    <button class="item" *ngFor="let category of categories" [attr.aria-label]="category.sectionName"
-                        (click)="getCategoryId(categories.value)" value="{{category.sectionId}}"
-                        (click)="changeColor(categories.value)" 
+    <ng-container *ngFor="let slide of categories">
+      <ng-template carouselSlide [id]="slide.sectionId" id="food">
+      
+        <button class="slide_item"
+        [attr.aria-label]="slide.sectionName"
+                        (click)="getCategoryId(category.value)" value="{{slide.sectionId}}"
+                        (click)="changeColor(category.value)"
+                        
+                        name="{{slide.sectionName}}"
+                        #category
                         [ngClass]="{
-                        'val24':categories.value=='24','val24Active' :category.hasMenus==true && category.sectionId=='24',
-                        'val25':categories.value=='25','val25Active' :category.hasMenus==true && category.sectionId=='25',
-                        'val26':categories.value=='26', 'val26Active':category.hasMenus==true && category.sectionId=='26',
-                        'val27':categories.value=='27','val27Active' :category.hasMenus==true && category.sectionId=='27',
-                        'val28':categories.value=='28','val28Active' :category.hasMenus==true && category.sectionId=='28',
-                        'val29':categories.value=='29', 'val29Active':category.hasMenus==true && category.sectionId=='29',
-                        'val30':categories.value=='30', 'val30Active':category.hasMenus==true && category.sectionId=='30',
-                        'val31':categories.value=='31', 'val31Active':category.hasMenus==true && category.sectionId=='31',
-                        'val32':categories.value=='32', 'val32Active':category.hasMenus==true && category.sectionId=='32',
-                        'val33':categories.value=='33', 'val33Active':category.hasMenus==true && category.sectionId=='33',
-                        'val34':categories.value=='34', 'val34Active':category.hasMenus==true && category.sectionId=='34',
-                        'val35':categories.value=='35', 'val35Active':category.hasMenus==true && category.sectionId=='35',
-                        'val36':categories.value=='36', 'val36Active':category.hasMenus==true && category.sectionId=='36',
-                        'val37':categories.value=='37', 'val37Active':category.hasMenus==true && category.sectionId=='37',
-                        'val38':categories.value=='38', 'val38Active':category.hasMenus==true && category.sectionId=='38',
-                        'val39':categories.value=='39', 'val39Active':category.hasMenus==true && category.sectionId=='39',
-                        'val40':categories.value=='40', 'val40Active':category.hasMenus==true && category.sectionId=='40',
-                        'val41':categories.value=='41','val41Active' :category.hasMenus==true && category.sectionId=='41'
-                        }" 
-                        #categories>
-                        {{category.sectionName}}
-                      
-                    </button>
+                            'val24':category.value=='24', 'val24Active' :slide.hasMenus==true && slide.sectionId=='24',
+                            'val25':category.value=='25', 'val25Active' :slide.hasMenus==true && slide.sectionId=='25',
+                            'val26':category.value=='26', 'val26Active':slide.hasMenus==true && slide.sectionId=='26',
+                            'val27':category.value=='27', 'val27Active' :slide.hasMenus==true && slide.sectionId=='27',
+                            'val28':category.value=='28', 'val28Active' :slide.hasMenus==true && slide.sectionId=='28',
+                            'val29':category.value=='29', 'val29Active':slide.hasMenus==true && slide.sectionId=='29',
+                            'val30':category.value=='30', 'val30Active':slide.hasMenus==true && slide.sectionId=='30',
+                            'val31':category.value=='31', 'val31Active':slide.hasMenus==true && slide.sectionId=='31',
+                            'val32':category.value=='32', 'val32Active':slide.hasMenus==true && slide.sectionId=='32',
+                            'val33':category.value=='33', 'val33Active':slide.hasMenus==true && slide.sectionId=='33',
+                            'val34':category.value=='34', 'val34Active':slide.hasMenus==true && slide.sectionId=='34',
+                            'val35':category.value=='35', 'val35Active':slide.hasMenus==true && slide.sectionId=='35',
+                            'val36':category.value=='36', 'val36Active':slide.hasMenus==true && slide.sectionId=='36',
+                            'val37':category.value=='37', 'val37Active':slide.hasMenus==true && slide.sectionId=='37',
+                            'val38':category.value=='38', 'val38Active':slide.hasMenus==true && slide.sectionId=='38',
+                            'val39':category.value=='39', 'val39Active':slide.hasMenus==true && slide.sectionId=='39',
+                            'val40':category.value=='40', 'val40Active':slide.hasMenus==true && slide.sectionId=='40',
+                            'val41':category.value=='41', 'val41Active' :slide.hasMenus==true && slide.sectionId=='41'
+                            }" 
+        >
+            {{slide.sectionName}}
+        </button>
+      </ng-template>
+    </ng-container>
 
-                </div>
-                <div class="button-area">
-                    <button type="button" class="prev" appPrev>
-                        <i class="fa-solid fa-angle-left angle"></i>
-                      
-                    </button>
-                    <button type="button" class="next" appNext>
-                        <i class="fa-solid fa-angle-right angle"></i>
-
-
-                    </button>
-                </div>
-            </div>
-
-        </div>
-
-    </div>
-</section> -->
-
-
- <div class="container rowCont">
-    <div class="loop" *ngFor="let categoryItem of categories">
-        <!-- <app-category-lists [categoryList]="categoryItem"></app-category-lists> -->
-        <app-categories-lists [categoryList]="categoryItem"></app-categories-lists>
-    </div>
-</div>  
+  </owl-carousel-o>

@@ -16,14 +16,17 @@ export class ChangecolorService {
     this.categoryArray = Catarray
     console.log(Catarray,"categories")
   }
+  receiveCategories(){
+    return this.categories.asObservable()
+  }
 
   colorSubject = new Subject()
   categoryId:any;
   changingColors(sectionId) {
     this.colorSubject.next(sectionId)
     this.categoryId = sectionId
-    // console.log('cahnging colors category id:', sectionId)
-    // console.log(this.categoryArray,"in category id array")
+    console.log('cahnging colors category id:', sectionId)
+    console.log(this.categoryArray,"in category id array")
     // for (let i = 0; i <= this.categoryArray.length; i++) {
     //   if (this.categoryArray[i].sectionId == sectionId) {
     //     console.log(sectionId, "logics");
@@ -157,9 +160,7 @@ export class ChangecolorService {
     //   }
     //   break;
     // }
-    if(this.categoryId == this.subcatId){
-      console.log("same")
-    }
+  
 
   }
 
@@ -169,18 +170,10 @@ export class ChangecolorService {
   subCatArray(subCatArray){
     this.subCatSubject.next(subCatArray)
     this.subCategoryArray= subCatArray
-    for(let i=0 ;i<=subCatArray.length; i++){
-      console.log(subCatArray[i].sectionId,'subcatid')
-      this.subcatId=subCatArray[i].sectionId;
-    }
-    console.log(subCatArray,"subcategories")
+    console.log(subCatArray)
+   
+    
   }
 
-  changeColorOfSubCat(){
-   
-    if(this.categoryId == this.subcatId){
-      console.log("same")
-    }
-   
-  }
+ 
 }

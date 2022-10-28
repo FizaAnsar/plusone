@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ContainerComponent } from './pos-components/container/container.component';
@@ -22,7 +22,7 @@ import { PrevDirective } from './directives/prev.directive';
 import { SectionNameComponent } from './pos-components/section-name/section-name.component';
 import { OrdersComponent } from './pos-components/container/main-page/sidebar/orders/orders.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
+import { CarouselModule } from 'ngx-owl-carousel-o';
 import { AuthInterceptorService } from './services/auth-interceptor.service';
 
 
@@ -49,11 +49,14 @@ import { AuthInterceptorService } from './services/auth-interceptor.service';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
     NgbModule,
-    HttpClientModule
+    HttpClientModule,
+    CarouselModule
+   
   ],
   providers: [
     
