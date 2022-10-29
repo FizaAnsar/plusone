@@ -1,175 +1,163 @@
-<!-- <section class="container">
+<section class="container">
+    <div class="searchmenu">
+        <div class="order_Details">
+            <div class="d-flex justify-content-between">
+                <div class="order_no">
+                    Order No: 123
 
+                </div>
+                <div class="table_no">
+                    Table No: 12
+                </div>
+                <div class="kitchen_menus">
+                    Kitchen Ticket: 98
+                </div>
+            </div>
+        </div>
+        <div class="inputs d-flex">
+            <div>
 
+                <input type="text" placeholder="Menu Items" class="menuItem m-2">
+            </div>
+            <div>
+
+                <input type="text" placeholder="Code" class="code m-2">
+            </div>
+            <div>
+                <input type="text" placeholder="Qty" class="menuqty m-2">
+            </div>
+        </div>
+    </div>
     <div class="scrollable">
         <div class="alert alert-info" *ngIf="cartItems.length === 0"> Your Cart is Empty</div>
-        <table class="table my-1 " *ngIf="cartItems.length">
+        <!-- new Design -->
+        <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0" *ngIf="cartItems.length">
 
-            <thead class=" thead text-dark ">
-                <tr>
-                    <th >ITEMS</th>
-                    <th >QTY</th>
-                    <th >PRICE</th>
-                    <th > AMOUNT</th>
-                    <th >Delete</th>
-                </tr>
+            <ngb-panel *ngFor="let cartItem of cartItems">
+                <ng-template ngbPanelTitle>
+                    <div class="d-flex w-100 bg-light item">
+                        <div class="qty">
+                            {{cartItem.qty}}
+                        </div>
+                        <div class="order-name">
+                            {{cartItem.name}}
+                        </div>
+                        <div class="price">
+                            {{(cartItem.price * cartItem.qty)}}
+                        </div>
+                    </div>
+                </ng-template>
+                <ng-template ngbPanelContent class="order-acordian">
+                    <div class="d-flex w-100">
+                        <div class="crud d-flex  w-50">
+                            <div class="plus m-2" (click)="inc(cartItem)">
+                                <button>
+                                    <i class="fa-solid fa-circle-plus text-danger"></i>
+                                </button>
+                            </div>
+                            <div class="minus m-2" (click)="dec(cartItem)">
+                                <button>
+                                    <i class="fa-solid fa-circle-minus text-danger"></i>
+                                </button>
+                            </div>
+                            <div class="delete m-2" 
+                           
+                            
+                            (click)="removeItem(cartItem)">
+                                <button>
+                                    <i class="fa-solid fa-trash-can text-danger"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="modification w-50 d-flex justify-content-end">
+                            <div class="m-2">
+                                <button class="mx-1">
+                                    <i class="fa-regular fa-chess-pawn text-primary"></i>
 
-            </thead>
+                                </button>
+                                <button>
+                                    <i class="fa-solid fa-chess-pawn text-primary"></i>
 
-            <tbody class="" *ngFor="let cartItem of cartItems">
-                <tr>
-                    <td >{{cartItem.name}}</td>
-                    <td >{{cartItem.qty}}</td>
-                    <td >{{cartItem.price}}</td>
-                    <td >{{(cartItem.qty * cartItem.price) | currency:'RS: '}}</td>
-                    <td >
-                        <button (click)="removeItem(cartItem)">
-                         
-                            <i class="fa-regular fa-trash-can"></i>
-                        </button> </td>
-                </tr>
+                                </button>
 
+                            </div>
+                            <div class="note m-2">
+                                <button (click)="collapse.toggle()" [attr.aria-expanded]="!isCollapsed"
+                                    aria-controls="collapseExample">
+                                    <i class="fa-solid fa-pen text-primary"></i>
+                                </button>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="note-collapse">
+                        <div #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
+                            <div class="card">
+                                <span class="text-center">Add Special Notes</span>
+                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" #note></textarea>
+                                <button class="btn btn-sm bg-primary text-light m-2" (click)="changenotevalue(note.value)">OK</button>
+                            </div>
+                        </div>
+                    </div>
+                   
+                    <div class="note-item d-flex w-100">
+                        <div class="text w-50 m-2">
+                            Extra Cheese
+                        </div>
+                        <div class="modify w-50 d-flex justify-content-end">
+                            <div class="note-item-price m-2">
+                                100
+                            </div>
+                            <div class="note-item-delete m-2">
+                                <i class="fa-solid fa-circle-xmark text-danger"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="noteValue d-flex" *ngIf="noteVAlue">
+                        <div class="noteText">
+                            <table>
+                                <tr class="justify-content-between">
+                                    <td>
+                                       <b>Note</b>
+                                    </td>
+                                    <td >
+                                {{noteVAlue}}
 
-            </tbody>
+                                    </td>
+                                </tr>
+                            </table>
+                            
+                        </div>
+                    </div>
+                </ng-template>
+            </ngb-panel>
 
-        </table>
+        </ngb-accordion>
     </div>
 
-    <div class="total">
-        <div class="row justify-content-center text-center">
-            <div class="col-6 text-center "><strong>Total</strong></div>
-            <div class="col-6 text-center ">
-                {{cartTotal | currency:'RS: '}}
+    <!-- another design -->
+
+
+    <div class="bill d-flex justify-content-between">
+
+        <div class="subtotal">
+            <span>SubTotal</span>
+            <div class="price1">
+                {{cartTotal}}
             </div>
         </div>
-
-    </div>
-
-    <div class="mainorder_btns my-1">
-        <button class="placeorder order">
-            Place Order
-        </button>
-        <button class="placeorder order">
-            Hold Order
-        </button>
-        <button class="placeorder order">
-            Print Invoice
-        </button>
-        <button class="placeorder order">
-            Paymenys
-        </button>
-
-    </div>
-    <div class="services">
-        <button class="dinin service">
-            Dine In
-        </button>
-        <button class="takeawy service">
-            Take Away
-        </button>
-        <button class="delivery service">
-            Delivery
-        </button>
-    </div>
-</section> -->
-
-
-
-<section class="container">
-
-
-    <div class="scrollable">
-        <div class="alert alert-info" *ngIf="cartItems.length === 0" > Your Cart is Empty</div>
-        <table class="table my-1 " >
-
-            <thead class=" thead text-dark" *ngIf="cartItems.length">
-                <tr>
-                    <th >ITEMS</th>
-                    <th >QTY</th>
-                    <th >PRICE</th>
-                    <th > AMOUNT</th>
-                    <th >Delete</th>
-                </tr>
-
-            </thead>
-            <tbody class="text-center" *ngFor="let cartItem of cartItems">
-                <tr>
-                  <td>{{cartItem.name}}</td>
-                  <td class="d-flex justify-content-between">
-                    <div>
-                      <button (click)="inc(cartItem)">+</button>
-                    </div>
-                    <div>{{cartItem.qty}}</div>
-                    <div>
-                      <button (click)="dec(cartItem)" >-</button>
-                    </div>
-                  </td>
-                  <td>{{cartItem.price}}</td>
-                  <td>
-                    {{(cartItem.price * cartItem.qty)}}
-                  </td>
-                  <td>
-                    <button (click)="removeItem(cartItem)">
-                        <i class="fa-regular fa-trash-can"></i>
-                    </button>
-                  </td>
-                </tr>
-                     
-                  </tbody>
-
-            <!-- <tbody class="" >
-                <tr>
-                    <td ></td>
-                    <td ></td>
-                    <td ></td>
-                    <td ></td>
-                    <td >
-                        <button >
-                    
-                            <i class="fa-regular fa-trash-can"></i>
-                        </button> </td>
-                </tr>
-
-
-            </tbody> -->
-
-        </table>
-    </div>
-
-    <div class="total">
-        <div class="row justify-content-center text-center">
-            <div class="col-6 text-center "><strong>Total</strong></div>
-            <div class="col-6 text-center ">
-             {{cartTotal}}
+        <div class="gst">
+            <span> GST(16%)</span>
+            <div class="price2">
+                380.8
             </div>
         </div>
-
-    </div>
-
-    <div class="mainorder_btns my-1">
-        <button class="placeorder order">
-            Place Order
-        </button>
-        <button class="placeorder order">
-            Hold Order
-        </button>
-        <button class="placeorder order">
-            Print Invoice
-        </button>
-        <button class="placeorder order">
-            Paymenys
-        </button>
-
-    </div>
-    <div class="services">
-        <button class="dinin service">
-            Dine In
-        </button>
-        <button class="takeawy service">
-            Take Away
-        </button>
-        <button class="delivery service">
-            Delivery
-        </button>
+        <div class="totaldue">
+            <span>Total Due</span>
+            <div class="price3">
+                2760.8
+            </div>
+        </div>
     </div>
 </section>
+

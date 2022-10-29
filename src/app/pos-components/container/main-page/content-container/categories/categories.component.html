@@ -11,8 +11,7 @@
         <button class="slide_item"
         [attr.aria-label]="slide.sectionName"
                         (click)="getCategoryId(category.value)" value="{{slide.sectionId}}"
-                        (click)="changeColor(category.value)"
-                        
+                        (click)="changeColor(category.value)"  
                         name="{{slide.sectionName}}"
                         #category
                         [ngClass]="{
@@ -36,7 +35,7 @@
                             'val41':category.value=='41', 'val41Active' :slide.hasMenus==true && slide.sectionId=='41'
                             }" 
         >
-            {{slide.sectionName}}
+            {{slide.sectionName}} 
         </button>
       </ng-template>
     </ng-container>

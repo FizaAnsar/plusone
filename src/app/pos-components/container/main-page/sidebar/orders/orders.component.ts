@@ -3,6 +3,7 @@ import { Component, inject, OnChanges, OnInit } from '@angular/core';
 import { FoodsDataService } from 'src/app/services/foods-data.service';
 import { MessengerService } from 'src/app/services/messenger.service';
 import { OrderDetailsService } from 'src/app/services/order-details.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-orders',
@@ -12,12 +13,17 @@ import { OrderDetailsService } from 'src/app/services/order-details.service';
 export class OrdersComponent implements OnInit {
 
 
-
-
+  public isCollapsed = true;
+  noteVAlue:string ='';
+  changenotevalue(note){
+    console.log(note)
+    this.noteVAlue = note;
+  }
   cartItems = [];
   cartTotal = 0;
 
-  constructor(private messenger: MessengerService) { }
+  constructor(private messenger: MessengerService,private modalService: NgbModal) { }
+
 
   ngOnInit(): void {
     this.messenger.receiveOrderMenu().subscribe(cart => {
@@ -80,15 +86,16 @@ export class OrdersComponent implements OnInit {
     this.countremove(this.count)
     this.cartTotals()
   }
+  
   removeItem(cartItem) {
-    let removeConfirm = window.confirm("Are you sure you want to remove this item from the cart?");
-    if (removeConfirm) {
+   
+   
       let index = this.cartItems.findIndex((item) => {
         return item.id === cartItem.id
       });
       this.cartItems.splice(index, 1);
 
-    }
+    
     this.cartTotals()
   }
 }

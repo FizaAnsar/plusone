@@ -24,6 +24,7 @@ import { OrdersComponent } from './pos-components/container/main-page/sidebar/or
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { AuthInterceptorService } from './services/auth-interceptor.service';
+import { PromptComponent } from './utilities/prompt/prompt.component';
 
 
 @NgModule({
@@ -45,6 +46,7 @@ import { AuthInterceptorService } from './services/auth-interceptor.service';
     PrevDirective,
     SectionNameComponent,
     OrdersComponent,
+    PromptComponent,
    
   ],
   imports: [
