@@ -1,0 +1,26 @@
+<div class="section-name">
+  <div class="name">Sub-Categories</div>
+  <div class="line">
+      <hr>
+  </div>
+</div>
+
+
+<owl-carousel-o [options]="customOptions">
+
+    <ng-container *ngFor="let slide of subcategory">
+      <ng-template carouselSlide [id]="slide.sectionId" id="food">
+  
+        <button class="slide_item category_item"
+        value="{{slide.categoryId}}"
+       (click)="getSubCategoryId(subCat.value)" 
+       #subCat
+        >
+        {{slide.categoryName}}
+       
+        <!-- (click)="getCategoryId(category.value)"  -->
+      </button>
+      </ng-template>
+    </ng-container>
+  
+  </owl-carousel-o>

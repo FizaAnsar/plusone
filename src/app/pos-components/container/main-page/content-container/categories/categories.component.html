@@ -1,20 +1,17 @@
-<app-section-name></app-section-name>
-
-
-
+<div class="section-name">
+  <div class="name">Categories</div>
+  <div class="line">
+      <hr>
+  </div>
+</div>
 
 <owl-carousel-o [options]="customOptions">
 
-    <ng-container *ngFor="let slide of categories">
-      <ng-template carouselSlide [id]="slide.sectionId" id="food">
-      
-        <button class="slide_item"
-        [attr.aria-label]="slide.sectionName"
-                        (click)="getCategoryId(category.value)" value="{{slide.sectionId}}"
-                        (click)="changeColor(category.value)"  
-                        name="{{slide.sectionName}}"
-                        #category
-                        [ngClass]="{
+  <ng-container *ngFor="let slide of categories">
+    <ng-template carouselSlide [id]="slide.sectionId" id="food">
+
+      <button class="slide_item" [attr.aria-label]="slide.sectionName" value="{{slide.sectionId}}"
+        (click)="changeColor(category.value)" name="{{slide.sectionName}}" #category [ngClass]="{
                             'val24':category.value=='24', 'val24Active' :slide.hasMenus==true && slide.sectionId=='24',
                             'val25':category.value=='25', 'val25Active' :slide.hasMenus==true && slide.sectionId=='25',
                             'val26':category.value=='26', 'val26Active':slide.hasMenus==true && slide.sectionId=='26',
@@ -33,11 +30,11 @@
                             'val39':category.value=='39', 'val39Active':slide.hasMenus==true && slide.sectionId=='39',
                             'val40':category.value=='40', 'val40Active':slide.hasMenus==true && slide.sectionId=='40',
                             'val41':category.value=='41', 'val41Active' :slide.hasMenus==true && slide.sectionId=='41'
-                            }" 
-        >
-            {{slide.sectionName}} 
-        </button>
-      </ng-template>
-    </ng-container>
+                            }">
+        {{slide.sectionName}}
+        <!-- (click)="getCategoryId(category.value)"  -->
+      </button>
+    </ng-template>
+  </ng-container>
 
-  </owl-carousel-o>
+</owl-carousel-o>

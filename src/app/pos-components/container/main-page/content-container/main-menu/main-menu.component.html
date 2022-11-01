@@ -1,0 +1,21 @@
+
+<div class="section-name">
+    <div class="name">Product</div>
+    <div class="line">
+        <hr>
+    </div>
+</div>
+<div class=" listsContainer" >   
+    <div class="loop" *ngFor="let menu of Menus">
+        <button class="box_item" id="btn" (click)="increment('val')"
+        (click)="calculation('add')"
+        (click)="calculation('minus')"
+        (click)="MenuItemClicked({name:menu.menuName, price:menu.menuPrice,id:menu.menuId})" 
+        >
+        {{menu.menuName}}
+        <div class="pricemenu">
+            {{menu.menuPrice}}
+          </div>
+    </button>
+    </div>
+</div>

@@ -1,4 +1,4 @@
-<section class="container">
+<section class="containers m-2">
     <div class="searchmenu">
         <div class="order_Details">
             <div class="d-flex justify-content-between">
@@ -14,26 +14,28 @@
                 </div>
             </div>
         </div>
-        <div class="inputs d-flex">
+        <div class="inputs">
             <div>
 
-                <input type="text" placeholder="Menu Items" class="menuItem m-2">
+                <input type="text" placeholder="Menu Items" class="menuItem ">
             </div>
             <div>
 
-                <input type="text" placeholder="Code" class="code m-2">
+                <input type="text" placeholder="Code" class="code ">
             </div>
             <div>
-                <input type="text" placeholder="Qty" class="menuqty m-2">
+                <input type="text" placeholder="Qty" class="menuqty ">
             </div>
         </div>
     </div>
     <div class="scrollable">
-        <div class="alert alert-info" *ngIf="cartItems.length === 0"> Your Cart is Empty</div>
+        <!-- <div class="alert alert-info" > Your Cart is Empty</div> -->
+        <!-- *ngIf="cartItems.length === 0" -->
         <!-- new Design -->
-        <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0" *ngIf="cartItems.length">
+        <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0">
+            <!-- *ngIf="cartItems.length" -->
 
-            <ngb-panel *ngFor="let cartItem of cartItems">
+            <ngb-panel *ngFor="let cartItem of Cart">
                 <ng-template ngbPanelTitle>
                     <div class="d-flex w-100 bg-light item">
                         <div class="qty">
@@ -61,11 +63,11 @@
                                 </button>
                             </div>
                             <div class="delete m-2" 
-                           
                             
                             (click)="removeItem(cartItem)">
                                 <button>
                                     <i class="fa-solid fa-trash-can text-danger"></i>
+                                    <!-- (click)="openDialog()" -->
                                 </button>
                             </div>
                         </div>
@@ -83,19 +85,21 @@
                             </div>
                             <div class="note m-2">
                                 <button (click)="collapse.toggle()" [attr.aria-expanded]="!isCollapsed"
-                                    aria-controls="collapseExample">
+                                
+                                    aria-controls="collapseExample"
+                                    class="show_note">
                                     <i class="fa-solid fa-pen text-primary"></i>
                                 </button>
                                 
                             </div>
                         </div>
                     </div>
-                    <div class="note-collapse">
+                    <div class="note-collapse" >
                         <div #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
-                            <div class="card">
+                            <div class="note_card"  >
                                 <span class="text-center">Add Special Notes</span>
-                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" #note></textarea>
-                                <button class="btn btn-sm bg-primary text-light m-2" (click)="changenotevalue(note.value)">OK</button>
+                                <textarea class="form-control" id="note" rows="3" #note></textarea>
+                                <button class="btn btn-sm bg-primary text-light m-2"   (click)="changenotevalue(note.value)"  >OK</button>
                             </div>
                         </div>
                     </div>
@@ -122,6 +126,7 @@
                                     </td>
                                     <td >
                                 {{noteVAlue}}
+                               
 
                                     </td>
                                 </tr>
@@ -143,19 +148,19 @@
         <div class="subtotal">
             <span>SubTotal</span>
             <div class="price1">
-                {{cartTotal}}
+                {{cartTotal |  currency:"":""}}
             </div>
         </div>
         <div class="gst">
-            <span> GST(16%)</span>
+            <span> GST(17%)</span>
             <div class="price2">
-                380.8
+               {{(cartTotal * (17/100))|  currency:"":""}}
             </div>
         </div>
         <div class="totaldue">
             <span>Total Due</span>
             <div class="price3">
-                2760.8
+                {{cartTotal +( cartTotal * (16/100))|  currency:"":""}}
             </div>
         </div>
     </div>

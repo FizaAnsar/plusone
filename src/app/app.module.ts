@@ -9,44 +9,40 @@ import { MainPageComponent } from './pos-components/container/main-page/main-pag
 import { SidebarComponent } from './pos-components/container/main-page/sidebar/sidebar.component';
 import { ContentContainerComponent } from './pos-components/container/main-page/content-container/content-container.component';
 import { CategoriesComponent } from './pos-components/container/main-page/content-container/categories/categories.component';
-import { CategoriesListsComponent } from './pos-components/container/main-page/content-container/categories/categories-lists/categories-lists.component';
-import { SubCategoryComponent } from './pos-components/container/main-page/content-container/sub-category/sub-category.component';
-import { SubCategoryListsComponent } from './pos-components/container/main-page/content-container/sub-category/sub-category-lists/sub-category-lists.component';
-import { ProductComponent } from './pos-components/container/main-page/content-container/product/product.component';
-import { ProductListsComponent } from './pos-components/container/main-page/content-container/product/product-lists/product-lists.component';
+
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LoginComponent } from './auth-components/login/login.component'
 import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
-import { NextDirective } from './directives/next.directive';
-import { PrevDirective } from './directives/prev.directive';
-import { SectionNameComponent } from './pos-components/section-name/section-name.component';
+
+
 import { OrdersComponent } from './pos-components/container/main-page/sidebar/orders/orders.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { AuthInterceptorService } from './services/auth-interceptor.service';
-import { PromptComponent } from './utilities/prompt/prompt.component';
+
+import {MatDialogModule} from '@angular/material/dialog';
+import {NgConfirmModule} from 'ng-confirm-box';
+import { SubCategoriesComponent } from './pos-components/container/main-page/content-container/sub-categories/sub-categories.component';
+import { MainMenuComponent } from './pos-components/container/main-page/content-container/main-menu/main-menu.component'; 
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    ContainerComponent,
+   
     HeaderComponent,
     MainPageComponent,
     SidebarComponent,
     ContentContainerComponent,
     CategoriesComponent,
-    CategoriesListsComponent,
-    SubCategoryComponent,
-    SubCategoryListsComponent,
-    ProductComponent,
-    ProductListsComponent,
+  
     LoginComponent,
-    NextDirective,
-    PrevDirective,
-    SectionNameComponent,
+    ContainerComponent,
+   
     OrdersComponent,
-    PromptComponent,
+   
+    SubCategoriesComponent,
+    MainMenuComponent,
    
   ],
   imports: [
@@ -57,7 +53,8 @@ import { PromptComponent } from './utilities/prompt/prompt.component';
     ReactiveFormsModule,
     NgbModule,
     HttpClientModule,
-    CarouselModule
+    CarouselModule,
+    NgConfirmModule
    
   ],
   providers: [

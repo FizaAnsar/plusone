@@ -1,10 +1,10 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { BehaviorSubject, Subject, tap } from 'rxjs';
+import { BehaviorSubject, Subject, tap, Observable } from 'rxjs';
 import { SignIn } from '../models/data-type';
-import { User } from '../models/user.model';
 import { config } from './config';
+import { Product } from '../models/product';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +12,7 @@ import { config } from './config';
 export class FoodsDataService {
   isUserLoggedIn = new BehaviorSubject<boolean>(false);
   responsedata: any;
-  user = new Subject<User>();
+  // user = new Subject<User>();
   constructor(private http:HttpClient, private router:Router) { }
   reloadUser() {
     // this function indicate that if user login it does not go back to signin and signup page.user will stay on dashboard(main) page
@@ -62,8 +62,8 @@ export class FoodsDataService {
     return this.http.get(`${config.server}${config.domain}categories/section/${CategoryID}`)
   }
 
-  getmainmenu(subCategoryID:any){
-    return this.http.get(`${config.server}${config.domain}menus/categories/${subCategoryID}`)
+  getmainmenu(subCategoryID:any): Observable<Product>{
+    return this.http.get<Product>(`${config.server}${config.domain}menus/categories/${subCategoryID}`)
   }
  
 

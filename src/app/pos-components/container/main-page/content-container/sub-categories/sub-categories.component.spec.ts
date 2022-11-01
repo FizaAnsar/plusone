@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { HeaderComponent } from './header.component';
+import { SubCategoriesComponent } from './sub-categories.component';
 
-describe('HeaderComponent', () => {
-  let component: HeaderComponent;
-  let fixture: ComponentFixture<HeaderComponent>;
+describe('SubCategoriesComponent', () => {
+  let component: SubCategoriesComponent;
+  let fixture: ComponentFixture<SubCategoriesComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ HeaderComponent ]
+      declarations: [ SubCategoriesComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(HeaderComponent);
+    fixture = TestBed.createComponent(SubCategoriesComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

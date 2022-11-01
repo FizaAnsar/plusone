@@ -1,22 +1,29 @@
-import { Component, Input, OnInit } from '@angular/core';
-
-import { FoodsDataService } from 'src/app/services/foods-data.service';
+import { Component, OnInit } from '@angular/core';
 import { MessengerService } from 'src/app/services/messenger.service';
+import { CartService } from 'src/app/services/cart.service';
+import { Product } from 'src/app/models/product';
 
 @Component({
-  selector: 'app-product-lists',
-  templateUrl: './product-lists.component.html',
-  styleUrls: ['./product-lists.component.css']
+  selector: 'app-main-menu',
+  templateUrl: './main-menu.component.html',
+  styleUrls: ['./main-menu.component.css']
 })
-export class ProductListsComponent implements OnInit {
-  @Input() ProductItem: any;
-  constructor(private messenger: MessengerService) { }
+export class MainMenuComponent implements OnInit {
+  Menus:any
+  constructor(private messenger:MessengerService, private cart:CartService) { }
 
   ngOnInit(): void {
+    this.messenger.receiveMenuMain().subscribe(menuApi => {
+     
+      this.Menus = menuApi;
+    
+    })
   }
   MenuItemClicked(data: any) {
-
+    // this.cart.addProductToCart2(data)
     this.messenger.sendOrderDetail(data)
+
+    // this.messenger.sendOrderDetail(data)
     // this.messenger.sendSubCategory(data)
 
     console.log('product-list data', data)
@@ -43,4 +50,5 @@ export class ProductListsComponent implements OnInit {
     data.qty= data.qty+1;
     console.log(data.qty)
   }
+
 }

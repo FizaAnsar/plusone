@@ -8,21 +8,7 @@
     font-size: small;
     font-weight: bold;
 }
-.menuItem{
-    width:200px;
-}
-.code{
-    width:100px;
-}
-.menuqty{
-    width:100px;
-}
-input{
-    background: rgb(246, 246, 246);
-    border-radius: 5px;
-    padding: 5px;
-    border:1px solid rgb(135, 135, 135);
-}
+
 .scrollable{
     max-height:450px;
     min-height:450px;
@@ -58,4 +44,23 @@ input{
     
     color: rgb(68, 68, 68);
     font-weight: bold;
+}
+.inputs{
+    display: grid;
+    grid-template-columns: 40% 30% 30%;
+    /* background: #000; */
+}
+.inputs div{
+    /* border:5px solid red; */
+    margin:5px;
+}
+.menuItem{
+    width:100%;
+}
+.code{
+    width:100%;
+}
+.menuqty{
+    width:100%;
+
 }

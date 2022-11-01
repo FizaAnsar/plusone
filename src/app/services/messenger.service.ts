@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { TitleStrategy } from '@angular/router';
 import { Subject } from 'rxjs';
+import { Product } from '../models/product';
 
 @Injectable({
   providedIn: 'root'
@@ -41,13 +42,18 @@ export class MessengerService {
 
     /////////////////send order details from product-lists.ts *to* orders.ts////////////////////////////////
     orderSubject = new Subject();
+    cartItem:any
     // order details reveived (product-lists to messenger service)
     sendOrderDetail(data:any){
       // console.log(data);
-      this.orderSubject.next(data)
+      this.orderSubject.next( sessionStorage.setItem('cart',JSON.stringify(data)))
+      //  sessionStorage.setItem('cart',JSON.stringify(data))
     }
     // order details send (messenger.service to orders.ts)
     receiveOrderMenu(){
+      // console.log(this.cartItem,"gfyjutilh,kj")
+      // this.cartItem = JSON.parse(sessionStorage.getItem('cart'))
+      // return this.cartItem;
       return this.orderSubject.asObservable();
     }
     ///////////////////////////////////////////////////////////////////////////////////////////////////////
