@@ -15,7 +15,7 @@ export class CategoriesComponent implements OnInit {
 
   ngOnInit(): void {
     this.receiveCategories()
-    this.loadChangeColor()
+    // this.loadChangeColor()
   }
   categories: any;
   subCategory: any;
@@ -50,12 +50,12 @@ export class CategoriesComponent implements OnInit {
       }
     })
   }
-  loadChangeColor() {
-    var eles = document.getElementsByClassName('slide_item');
-    console.log(eles);
-    console.log(eles.length);
-    console.log(eles[0]);
-  }
+  // loadChangeColor() {
+  //   var eles = document.getElementsByClassName('slide_item');
+  //   console.log(eles);
+  //   console.log(eles.length);
+  //   console.log(eles[0]);
+  // }
 
   customOptions: OwlOptions = {
     loop: false,

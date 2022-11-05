@@ -46,7 +46,7 @@ export class MessengerService {
     // order details reveived (product-lists to messenger service)
     sendOrderDetail(data:any){
       // console.log(data);
-      this.orderSubject.next( sessionStorage.setItem('cart',JSON.stringify(data)))
+      this.orderSubject.next( data)
       //  sessionStorage.setItem('cart',JSON.stringify(data))
     }
     // order details send (messenger.service to orders.ts)
@@ -76,6 +76,15 @@ export class MessengerService {
    
     receivecountminus(){
       return this.countsminus.asObservable()
+    }
+
+    modifiers = new Subject();
+    sendModifier(data){
+      this.modifiers.next(data)
+      console.log(data)
+    }
+    receiveModifier(){
+      return this.modifiers.asObservable()
     }
     
 }

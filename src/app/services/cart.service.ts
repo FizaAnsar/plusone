@@ -9,16 +9,41 @@ import { Product } from '../models/product';
   providedIn: 'root'
 })
 export class CartService {
-  carturl: 'http://localhost:3000/cart'
+ 
   constructor(private http: HttpClient) { }
-  getCartItems(): Observable<any> {
-    //TODO: Mapping the obtain result to our cart Items Properties (pipe() and map())
-    return this.http.get<any>("http://localhost:3000/cart");
+  products: any[] = [];
+  getProduct() {
+    return this.products;
   }
-  addProductToCart2(product:any){
-    // console.log(this.http.post(this.carturl,{product}))
-    //  sessionStorage.setItem('cart',JSON.stringify(product))
-    // return this.http.post("http://localhost:3000/cart",{product})
 
+  saveCart(): void {
+    localStorage.setItem('cart_items', JSON.stringify(this.products));
+  }
+
+  addToCart(addedProduct: any) {
+    this.products.push(addedProduct);
+    this.saveCart();
+  }
+
+  loadCart(): void {
+    this.products = JSON.parse(localStorage.getItem('cart_items') as any) || [];
+  }
+
+  productInCart(product: any) {
+
+    return this.products.findIndex((x: any) => x.id === product.id) ;
+  }
+
+  removeProduct(product: any) {
+    const index = this.products.findIndex((x: any) => x.id === product.id);
+
+    if (index > -1) {
+      this.products.splice(index, 1);
+      this.saveCart();
+    }
+  }
+
+  clearProducts() {
+    localStorage.clear();
   }
 }

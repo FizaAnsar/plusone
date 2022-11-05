@@ -15,7 +15,7 @@ export class SubCategoriesComponent implements OnInit {
   mainMenu:any;
   ngOnInit(): void {
     this.messenger.receiveSubCategory().subscribe(subcatApi =>{
-      console.log("subCategory successfully receive in sub category", subcatApi);
+      // console.log("subCategory successfully receive in sub category", subcatApi);
      
     
       this.subcategory= subcatApi;
@@ -23,10 +23,10 @@ export class SubCategoriesComponent implements OnInit {
         this.food.getmainmenu(this.subcategory[i].categoryId).subscribe({
           next: (res) => {
             var btn = document.getElementsByClassName('category_item')[0]
-            console.log(btn,"subcategry")
+            // console.log(btn,"subcategry")
             // console.log(btn.nodeValue)
             var value = btn.attributes[2].value;
-            console.log(value)
+            // console.log(value)
             let button;
             button =btn;
             if(this.subcategory[i].categoryId=='146'){
@@ -62,7 +62,7 @@ export class SubCategoriesComponent implements OnInit {
             console.log(err.message)
           }
         })
-      console.log(this.subcategory[i].categoryId);
+      // console.log(this.subcategory[i].categoryId);
       break;
 
       }

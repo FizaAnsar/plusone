@@ -9,38 +9,31 @@ import { MainPageComponent } from './pos-components/container/main-page/main-pag
 import { SidebarComponent } from './pos-components/container/main-page/sidebar/sidebar.component';
 import { ContentContainerComponent } from './pos-components/container/main-page/content-container/content-container.component';
 import { CategoriesComponent } from './pos-components/container/main-page/content-container/categories/categories.component';
-
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LoginComponent } from './auth-components/login/login.component'
 import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
-
-
 import { OrdersComponent } from './pos-components/container/main-page/sidebar/orders/orders.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { AuthInterceptorService } from './services/auth-interceptor.service';
-
-import {MatDialogModule} from '@angular/material/dialog';
 import {NgConfirmModule} from 'ng-confirm-box';
 import { SubCategoriesComponent } from './pos-components/container/main-page/content-container/sub-categories/sub-categories.component';
 import { MainMenuComponent } from './pos-components/container/main-page/content-container/main-menu/main-menu.component'; 
+import {MatInputModule} from '@angular/material/input';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
 
 
 @NgModule({
   declarations: [
-    AppComponent,
-   
+    AppComponent, 
     HeaderComponent,
     MainPageComponent,
     SidebarComponent,
     ContentContainerComponent,
     CategoriesComponent,
-  
     LoginComponent,
     ContainerComponent,
-   
     OrdersComponent,
-   
     SubCategoriesComponent,
     MainMenuComponent,
    
@@ -54,7 +47,9 @@ import { MainMenuComponent } from './pos-components/container/main-page/content-
     NgbModule,
     HttpClientModule,
     CarouselModule,
-    NgConfirmModule
+    NgConfirmModule,
+    MatInputModule,
+    MatAutocompleteModule
    
   ],
   providers: [

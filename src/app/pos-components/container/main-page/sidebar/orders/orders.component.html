@@ -17,152 +17,178 @@
         <div class="inputs">
             <div>
 
-                <input type="text" placeholder="Menu Items" class="menuItem ">
+                <!-- <input type="text" placeholder="Menu Items" class="menuItem "> -->
+               <form [formGroup]="formGroup">
+                <mat-form-field class="menuItem ">
+                    <input matInput type="text" [matAutocomplete]="auto" formControlName="menuItems" class="menuItem2" placeholder="Menu Items"/>
+                    <mat-autocomplete #auto="matAutocomplete">
+                        <mat-option *ngFor="let menus of filteredOptions" [value]="menus">
+                            {{menus}}
+                        </mat-option>
+                        <!-- <mat-option >
+                            {{allmenus}}
+                        </mat-option> -->
+                    </mat-autocomplete>
+
+                </mat-form-field>
+               </form>
             </div>
             <div>
-
-                <input type="text" placeholder="Code" class="code ">
-            </div>
-            <div>
-                <input type="text" placeholder="Qty" class="menuqty ">
-            </div>
-        </div>
-    </div>
-    <div class="scrollable">
-        <!-- <div class="alert alert-info" > Your Cart is Empty</div> -->
-        <!-- *ngIf="cartItems.length === 0" -->
-        <!-- new Design -->
-        <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0">
-            <!-- *ngIf="cartItems.length" -->
-
-            <ngb-panel *ngFor="let cartItem of Cart">
-                <ng-template ngbPanelTitle>
-                    <div class="d-flex w-100 bg-light item">
-                        <div class="qty">
-                            {{cartItem.qty}}
-                        </div>
-                        <div class="order-name">
-                            {{cartItem.name}}
-                        </div>
-                        <div class="price">
-                            {{(cartItem.price * cartItem.qty)}}
-                        </div>
-                    </div>
-                </ng-template>
-                <ng-template ngbPanelContent class="order-acordian">
-                    <div class="d-flex w-100">
-                        <div class="crud d-flex  w-50">
-                            <div class="plus m-2" (click)="inc(cartItem)">
-                                <button>
-                                    <i class="fa-solid fa-circle-plus text-danger"></i>
-                                </button>
-                            </div>
-                            <div class="minus m-2" (click)="dec(cartItem)">
-                                <button>
-                                    <i class="fa-solid fa-circle-minus text-danger"></i>
-                                </button>
-                            </div>
-                            <div class="delete m-2" 
-                            
-                            (click)="removeItem(cartItem)">
-                                <button>
-                                    <i class="fa-solid fa-trash-can text-danger"></i>
-                                    <!-- (click)="openDialog()" -->
-                                </button>
-                            </div>
-                        </div>
-                        <div class="modification w-50 d-flex justify-content-end">
-                            <div class="m-2">
-                                <button class="mx-1">
-                                    <i class="fa-regular fa-chess-pawn text-primary"></i>
-
-                                </button>
-                                <button>
-                                    <i class="fa-solid fa-chess-pawn text-primary"></i>
-
-                                </button>
-
-                            </div>
-                            <div class="note m-2">
-                                <button (click)="collapse.toggle()" [attr.aria-expanded]="!isCollapsed"
-                                
-                                    aria-controls="collapseExample"
-                                    class="show_note">
-                                    <i class="fa-solid fa-pen text-primary"></i>
-                                </button>
-                                
-                            </div>
-                        </div>
-                    </div>
-                    <div class="note-collapse" >
-                        <div #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
-                            <div class="note_card"  >
-                                <span class="text-center">Add Special Notes</span>
-                                <textarea class="form-control" id="note" rows="3" #note></textarea>
-                                <button class="btn btn-sm bg-primary text-light m-2"   (click)="changenotevalue(note.value)"  >OK</button>
-                            </div>
-                        </div>
-                    </div>
+                <mat-form-field class="menuItem ">
+                    <input matInput type="text"  formControlName="menuItems" class="menuItem2" placeholder="Code"/>
                    
-                    <div class="note-item d-flex w-100">
-                        <div class="text w-50 m-2">
-                            Extra Cheese
-                        </div>
-                        <div class="modify w-50 d-flex justify-content-end">
-                            <div class="note-item-price m-2">
-                                100
-                            </div>
-                            <div class="note-item-delete m-2">
-                                <i class="fa-solid fa-circle-xmark text-danger"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="noteValue d-flex" *ngIf="noteVAlue">
-                        <div class="noteText">
-                            <table>
-                                <tr class="justify-content-between">
-                                    <td>
-                                       <b>Note</b>
-                                    </td>
-                                    <td >
-                                {{noteVAlue}}
-                               
-
-                                    </td>
-                                </tr>
-                            </table>
-                            
-                        </div>
-                    </div>
-                </ng-template>
-            </ngb-panel>
-
-        </ngb-accordion>
+                </mat-form-field>
+                
+            </div>
+            <div>
+                <mat-form-field class="menuItem ">
+                    <input matInput type="text"  formControlName="menuItems" class="menuItem2" placeholder="Qty"/>
+                   
+                </mat-form-field>
+               
+            </div>
+        </div>
     </div>
+    <div class="mainDiv" >
 
-    <!-- another design -->
-
-
-    <div class="bill d-flex justify-content-between">
-
-        <div class="subtotal">
-            <span>SubTotal</span>
-            <div class="price1">
-                {{cartTotal |  currency:"":""}}
-            </div>
+        <div class="scrollable">
+            <div class="alert alert-info" *ngIf="Cart.length === 0"> Your Cart is Empty</div>
+            <!-- <div class="alert alert-info" > Your Cart is Empty</div>
+            <!-- *ngIf="cartItems.length === 0" -->
+            <!-- new Design -->
+             <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0" *ngIf="Cart.length">
+               
+                <ngb-panel *ngFor="let cartItem of Cart">
+                    <ng-template ngbPanelTitle>
+                        <div class="d-flex w-100 bg-light item">
+                            <div class="qty">
+                                {{cartItem.qty}}
+                            </div>
+                            <div class="order-name">
+                                {{cartItem.name}}
+                            </div>
+                            <div class="price">
+                                {{(cartItem.price * cartItem.qty)}}
+                            </div>
+                        </div>
+                    </ng-template>
+                    <ng-template ngbPanelContent class="order-acordian">
+                        <div class="d-flex w-100">
+                            <div class="crud d-flex  w-50">
+                                <div class="plus m-2" (click)="inc(cartItem)">
+                                    <button>
+                                        <i class="fa-solid fa-circle-plus text-danger"></i>
+                                    </button>
+                                </div>
+                                <div class="minus m-2" (click)="dec(cartItem)">
+                                    <button>
+                                        <i class="fa-solid fa-circle-minus text-danger"></i>
+                                    </button>
+                                </div>
+                                <div class="delete m-2" 
+                                
+                                (click)="removeItem(cartItem)">
+                                    <button>
+                                        <i class="fa-solid fa-trash-can text-danger"></i>
+                                       
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="modification w-50 d-flex justify-content-end">
+                                <div class="m-2">
+                                    <button class="mx-1">
+                                        <i class="fa-regular fa-chess-pawn text-primary"></i>
+    
+                                    </button>
+                                    <button>
+                                        <i class="fa-solid fa-chess-pawn text-primary"></i>
+    
+                                    </button>
+    
+                                </div>
+                                <div class="note m-2">
+                                    <button (click)="collapse.toggle()" [attr.aria-expanded]="!isCollapsed"
+                                    
+                                        aria-controls="collapseExample"
+                                        class="show_note">
+                                        <i class="fa-solid fa-pen text-primary"></i>
+                                    </button>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="note-collapse" >
+                            <div #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
+                                <div class="note_card"  >
+                                    <span class="text-center">Add Special Notes</span>
+                                    <textarea class="form-control" id="note" rows="3" #note></textarea>
+                                    <button class="btn btn-sm bg-primary text-light m-2"   (click)="changenotevalue(note.value)"  >OK</button>
+                                </div>
+                            </div>
+                        </div>
+                       <!-- modifiers -->
+                        <div class="note-item d-flex w-100" *ngFor="let modifier of modifiers">
+                            <div class="text w-50 m-2">
+                               {{modifier.name}}
+                            </div>
+                            <div class="modify w-50 d-flex justify-content-end">
+                                <div class="note-item-price m-2">
+                                    {{modifier.price}}
+                                </div>
+                                <div class="note-item-delete m-2">
+                                    <i class="fa-solid fa-circle-xmark text-danger"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="noteValue d-flex" *ngIf="noteVAlue">
+                            <div class="noteText">
+                                <table>
+                                    <tr class="justify-content-between">
+                                        <td>
+                                           <b>Note</b>
+                                        </td>
+                                        <td >
+                                    {{noteVAlue}}
+                                   
+    
+                                        </td>
+                                    </tr>
+                                </table>
+                                
+                            </div>
+                        </div>
+                    </ng-template>
+                </ngb-panel>
+    
+            </ngb-accordion> 
+    
+           
         </div>
-        <div class="gst">
-            <span> GST(17%)</span>
-            <div class="price2">
-               {{(cartTotal * (17/100))|  currency:"":""}}
+    
+        <!-- another design -->
+    
+        <div class="bill d-flex justify-content-between"   >  
+            <div class="subtotal">
+                <span>SubTotal</span>
+                <div class="price1">
+                    {{cartTotal|  currency:"":""}}
+                </div>
             </div>
-        </div>
-        <div class="totaldue">
-            <span>Total Due</span>
-            <div class="price3">
-                {{cartTotal +( cartTotal * (16/100))|  currency:"":""}}
+            <div class="gst">
+                <span> GST(17%)</span>
+                <div class="price2">
+                   {{(cartTotal* (17/100))|  currency:"":""}}
+                </div>
+            </div>
+            <div class="totaldue">
+                <span>Total Due</span>
+                <div class="price3">
+                    {{cartTotal+( cartTotal * (16/100))|  currency:"":""}}
+                </div>
             </div>
         </div>
     </div>
 </section>
+
+
 

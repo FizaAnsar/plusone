@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { BehaviorSubject, Subject, tap, Observable } from 'rxjs';
+import { BehaviorSubject, Subject, tap, Observable, map, } from 'rxjs';
 import { SignIn } from '../models/data-type';
 import { config } from './config';
 import { Product } from '../models/product';
@@ -65,6 +65,21 @@ export class FoodsDataService {
   getmainmenu(subCategoryID:any): Observable<Product>{
     return this.http.get<Product>(`${config.server}${config.domain}menus/categories/${subCategoryID}`)
   }
- 
+
+  // get all menus
+ getallmenus(){
+  return this.http.get(`${config.server}${config.domain}sections/Category/menu/all`).pipe(
+    map((resp:[])=> resp.map(item=> 
+
+      item['sectionName']
+    ))
+  )
+  
+ }
+
+  getMenuNames(){
+    return this.http.get(`${config.server}${config.domain}sections/Category/menu/all`)
+  }
+  // get all menus end
 
 }

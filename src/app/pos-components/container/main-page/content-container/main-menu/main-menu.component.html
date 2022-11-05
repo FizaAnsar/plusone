@@ -1,21 +1,49 @@
-
 <div class="section-name">
     <div class="name">Product</div>
     <div class="line">
         <hr>
     </div>
 </div>
-<div class=" listsContainer" >   
+<div class=" listsContainer">
     <div class="loop" *ngFor="let menu of Menus">
-        <button class="box_item" id="btn" (click)="increment('val')"
-        (click)="calculation('add')"
-        (click)="calculation('minus')"
-        (click)="MenuItemClicked({name:menu.menuName, price:menu.menuPrice,id:menu.menuId})" 
-        >
-        {{menu.menuName}}
-        <div class="pricemenu">
-            {{menu.menuPrice}}
-          </div>
-    </button>
+        <button class="box_item" id="btn" (click)="calculation('add')" (click)="calculation('minus')"
+            (click)="MenuItemClicked({name:menu.menuName, price:menu.menuPrice,id:menu.menuId})"
+            (click)="showModifier({name:menu.menuName, modifier:menu.modifiers})" data-bs-toggle="modal"
+            data-bs-target="#exampleModal">
+            {{menu.menuName}}
+            <div class="pricemenu">
+                {{menu.menuPrice}}
+                <!-- (click)="increment('val')" -->
+            </div>
+            <!-- (click)="MenuItemClicked({name:menu.menuName, price:menu.menuPrice,id:menu.menuId})"  -->
+
+        </button>
+    </div>
+</div>
+<!-- Modals -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modifiers</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="modifierDiv" *ngFor="let modifier of modifiers">
+                    <button class="modifiers"
+                    (click)="sendModifiers({mId:modifier.modifierId, mName:modifier.modifierName, mPrice:modifier.modifierPrice })"
+                    >
+                        <div class="modifierName">
+
+                            {{modifier.modifierName}}
+                        </div>
+                        <div class="modifierPrice">
+                            {{modifier.modifierPrice}}
+                        </div>
+                    </button>
+                </div>
+            </div>
+          
+        </div>
     </div>
 </div>

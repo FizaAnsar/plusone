@@ -10,7 +10,7 @@ import { Product } from 'src/app/models/product';
 })
 export class MainMenuComponent implements OnInit {
   Menus:any
-  constructor(private messenger:MessengerService, private cart:CartService) { }
+  constructor(private messenger:MessengerService) { }
 
   ngOnInit(): void {
     this.messenger.receiveMenuMain().subscribe(menuApi => {
@@ -18,13 +18,13 @@ export class MainMenuComponent implements OnInit {
       this.Menus = menuApi;
     
     })
+    
   }
   MenuItemClicked(data: any) {
-    // this.cart.addProductToCart2(data)
+   
     this.messenger.sendOrderDetail(data)
 
-    // this.messenger.sendOrderDetail(data)
-    // this.messenger.sendSubCategory(data)
+ 
 
     console.log('product-list data', data)
   }
@@ -46,9 +46,28 @@ export class MainMenuComponent implements OnInit {
   
 
   }
-  increment(data){
-    data.qty= data.qty+1;
-    console.log(data.qty)
+  // increment(data){
+  //   data.qty= data.qty+1;
+  //   console.log(data.qty)
+  // }
+  menus:any =[]
+  // addtocart(menu){
+  //   console.log(menu,"main menu")
+ 
+  //   this.messenger.sendOrderDetail(menu)
+  // }
+
+modifiers:any;
+  showModifier(data){
+    console.log(data)
+   let modifierString ;
+   modifierString = JSON.stringify(data.modifier)
+  //  console.log(modifierString)
+   this.modifiers=JSON.parse(modifierString)
+  }
+  sendModifiers(data){
+    console.log("send modifier data", data)
+    this.messenger.sendModifier(data)
   }
 
 }
