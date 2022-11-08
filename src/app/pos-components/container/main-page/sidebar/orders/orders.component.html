@@ -25,9 +25,7 @@
                         <mat-option *ngFor="let menus of filteredOptions" [value]="menus">
                             {{menus}}
                         </mat-option>
-                        <!-- <mat-option >
-                            {{allmenus}}
-                        </mat-option> -->
+                       
                     </mat-autocomplete>
 
                 </mat-form-field>
@@ -96,14 +94,13 @@
                             </div>
                             <div class="modification w-50 d-flex justify-content-end">
                                 <div class="m-2">
-                                    <button class="mx-1">
+                                    <button class="mx-1" data-bs-toggle="modal"
+                                    data-bs-target="#exampleModal">
                                         <i class="fa-regular fa-chess-pawn text-primary"></i>
-    
-                                    </button>
-                                    <button>
                                         <i class="fa-solid fa-chess-pawn text-primary"></i>
     
                                     </button>
+                                   
     
                                 </div>
                                 <div class="note m-2">
@@ -127,19 +124,22 @@
                             </div>
                         </div>
                        <!-- modifiers -->
-                        <div class="note-item d-flex w-100" *ngFor="let modifier of modifiers">
-                            <div class="text w-50 m-2">
-                               {{modifier.name}}
-                            </div>
-                            <div class="modify w-50 d-flex justify-content-end">
-                                <div class="note-item-price m-2">
-                                    {{modifier.price}}
+                        <div class="note-item  " >
+                            <div class="modifierDiv2 d-flex w-100" *ngFor="let m of modifiers">
+                                <div class="text w-50 m-2 ">
+                                   {{m.modifierName}}
                                 </div>
-                                <div class="note-item-delete m-2">
-                                    <i class="fa-solid fa-circle-xmark text-danger"></i>
+                                <div class="modify w-50 d-flex justify-content-end">
+                                    <div class="note-item-price m-2 " >
+                                        {{m.modifierPrice}}
+                                    </div>
+                                    <div class="note-item-delete m-2">
+                                        <i class="fa-solid fa-circle-xmark text-danger"></i>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+                        <!-- modeifier end -->
                         <div class="noteValue d-flex" *ngIf="noteVAlue">
                             <div class="noteText">
                                 <table>
@@ -189,6 +189,8 @@
         </div>
     </div>
 </section>
+
+
 
 
 

@@ -27,11 +27,17 @@ export class OrdersComponent implements OnInit {
   cartTotal = 0;
   Cart = []
   StorageItem: any
+  modifiers: any = [];
+  menuNames: any = [];
+
 
 
   allmenus: any;
   formGroup: FormGroup;
   filteredOptions;
+  arr = Array();
+  subArray = [];
+
 
 
 
@@ -41,22 +47,18 @@ export class OrdersComponent implements OnInit {
     private fb: FormBuilder,
 
   ) {
-    console.log(this.Cart, "constructor")
-
-    // This function will get all the menu names 
-    this.food.getMenuNames()
-
+    console.log(this.Cart, "constructor");
+    console.log(this.subArray, "constructor sub Array ")
 
   }
 
-  modifiers:any;
   ngOnInit(): void {
     this.messenger.receiveOrderMenu().subscribe(cart => {
 
       console.log("selectred items in Orders Components", cart)
       this.setInStorage(cart)
       this.addProductToCart(cart)
-      this.messenger.receiveModifier().subscribe(Selectedmodifier=>{
+      this.messenger.receiveModifier().subscribe(Selectedmodifier => {
         console.log("select", Selectedmodifier)
         // this.modifiers = Selectedmodifier;
         this.addModifierToCart(Selectedmodifier)
@@ -67,14 +69,13 @@ export class OrdersComponent implements OnInit {
     })
     // for dropdown search
     this.initForm()
-    this.getNames()
-
-      // For Modifiers addition in cart Table
+    this.getMenuNames()
    
+
 
   }
 
-//add products in cart
+  //add products in cart
   addProductToCart(cart: any) {
 
     let menuExits = false
@@ -103,12 +104,14 @@ export class OrdersComponent implements OnInit {
 
   }
   addModifierToCart(data) {
-      this.modifiers.unshift({
-        id: data.mId,
-        name: data.mName,     
-       price: data.mPrice
-      })
+    console.log("add modifier to cart", data)
+    this.modifiers.unshift({
+      modifierId: data.mId,
+      modifierName: data.mName,
+      modifierPrice: data.mPrice
+    })
   }
+
 
   setInStorage(data: any) {
     localStorage.setItem('cart', JSON.stringify(data))
@@ -193,9 +196,11 @@ export class OrdersComponent implements OnInit {
   //   pencil.style.display = 'block !important'
   // }
 
-///////////////////////Pricing section end//////////////
+  ///////////////////////Pricing section end//////////////
 
-/////search Functionality////////////////////////////
+
+  /////search Functionality////////////////////////////
+
   initForm() {
     this.formGroup = this.fb.group({
       'menuItems': ['']
@@ -212,64 +217,43 @@ export class OrdersComponent implements OnInit {
       })
   }
   filteredData(eneterdData) {
-    this.filteredOptions = this.allmenus.filter(item => {
+
+    this.filteredOptions = this.subArray.filter(item => {
       return item.toLowerCase().indexOf(eneterdData.toLowerCase()) > -1
     })
   }
-
-  products: any
-  mainMenus = []
-  getNames() {
-    this.food.getallmenus().subscribe(response => {
-      console.log(response, "data")
-      this.allmenus = response;
-      this.filteredOptions = response;
-    })
+  getMenuNames() {
     this.food.getMenuNames().subscribe({
       next: (res) => {
-        // console.log(res,"Main Json")
+
         let Category;
         Category = res;
         for (let i = 0; i < Category.length; i++) {
-
-
-          // console.log(i, Category[0], "Outer for Loop  by using break this will only get appitizer section and its only 46 subcategories no duplication occurs");
-
-
-          // console.log(i, "This will get all 46 categories array of Appitizer section whose index is 0", Category[0].categoryDAOs);
           let subCategories;
           subCategories = Category[i].categoryDAOs;
-
           for (let n = 0; n < subCategories.length; n++) {
             let products;
-
             products = subCategories[n].menuDAOs;
-
             for (let k = 0; k < products.length; k++) {
-
-              let array;
-              array = products[k]
-              // console.log(".....", array.menuName)
-
+              let menus;
+              menus = products[k]
+              this.subArray.push(menus.menuName);
             }
           }
-          break; //  by using break this will only get appitizer section and its only 46 subcategories no duplication occurs
+          break;
         }
+        console.log(this.subArray);
       },
       error: (err) => {
         console.log(err.message)
       }
-
     }
     )
-
   }
 
   // /////search functionality////////////////////
   /////////////////////////////////////////////////////dropdown search functionality end
-
-
-
-
+ 
+ 
 }
 

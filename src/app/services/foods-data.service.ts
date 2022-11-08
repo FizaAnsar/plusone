@@ -76,10 +76,12 @@ export class FoodsDataService {
   )
   
  }
+   arr = Array() 
 
-  getMenuNames(){
-    return this.http.get(`${config.server}${config.domain}sections/Category/menu/all`)
-  }
+   getMenuNames(){
+    return  this.http.get(`${config.server}${config.domain}sections/Category/menu/all`)
+    
   // get all menus end
+  }
 
 }
