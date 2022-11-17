@@ -10,10 +10,10 @@
 }
 
 .scrollable{
-    max-height:450px;
-    min-height:450px;
-    overflow: auto;
+    /* max-height:400px; */
+   height:400px;
     overflow-x: hidden;
+    overflow-y: scroll!important;
     border:1px solid rgb(135, 135, 135);
     background: #fff;
 }
@@ -30,6 +30,11 @@
 }
 .order-acordian,.fa-solid,.fa-regular{
     font-size: 1.5rem;
+}
+.modifiersImg{
+    width:50px;
+    height:35px;
+    /* background: rgb(224, 124, 124); */
 }
 .bill{
   
@@ -73,3 +78,15 @@
    
 
 } */
+.finalizeBtn{
+    background: rgb(179, 150, 23);
+    color:#fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width:100%;
+    padding: 12px;;
+}
+a{
+    text-decoration: none;;
+}

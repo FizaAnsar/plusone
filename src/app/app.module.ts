@@ -21,6 +21,7 @@ import { SubCategoriesComponent } from './pos-components/container/main-page/con
 import { MainMenuComponent } from './pos-components/container/main-page/content-container/main-menu/main-menu.component'; 
 import {MatInputModule} from '@angular/material/input';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import { PaymentComponent } from './pos-components/container/main-page/sidebar/payment/payment.component';
 
 
 @NgModule({
@@ -36,6 +37,7 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
     OrdersComponent,
     SubCategoriesComponent,
     MainMenuComponent,
+    PaymentComponent,
    
   ],
   imports: [

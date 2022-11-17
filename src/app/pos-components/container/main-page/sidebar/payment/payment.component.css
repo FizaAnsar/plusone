@@ -1,0 +1,40 @@
+.section-name {
+    display: grid;
+    grid-template-columns: 10% 90%;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  
+  
+  .line hr {
+    width: 99%;
+    border: 1px solid black;
+    background: black;
+  }
+  .detailTable{
+    display: grid;
+    grid-template-columns: 30% 40% 30%;
+    align-items: center;
+    justify-content: center;
+  }
+.menuText{
+    /* align-self: end; */
+    /* grid-area:end; */
+    text-align: right;
+    padding-right:10px;
+}
+  .detailLine{
+    border:none;
+    border-top:2px dashed black;
+  }
+  .detailPrice{
+    padding-left:10px;
+  }
+  .billContainer{
+    display:flex;
+    /* background: #000; */
+    width:50%;
+    margin:auto;
+    background: rgb(239, 154, 154);
+  }
